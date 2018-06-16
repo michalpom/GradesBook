@@ -31,7 +31,7 @@ namespace Grades
             Console.WriteLine(stats.AverageGrade);
             Console.WriteLine(stats.HighestGrade);
             Console.WriteLine(stats.LowestGrade);
-            
+
 
             //GradeBook book2 = book; //= new GradeBook();
             //book2.AddGrade(75);
@@ -44,6 +44,7 @@ namespace Grades
             //ctro cw tabx2
 
             //test for github
+            //test for github branch chapter6
         }
     }
 
