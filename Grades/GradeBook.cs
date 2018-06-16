@@ -50,9 +50,27 @@ namespace Grades
 
         }
 
-        public string Name;
+        //public string Name; //field
 
-        private List<float> grades;    //field
+        //property:
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if(!String.IsNullOrEmpty(value))
+                {
+                    _name = value;
+                }
+            }
+
+        }
+        private string _name;
+
+        private List<float> grades;    
 
 
 

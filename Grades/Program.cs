@@ -13,12 +13,11 @@ namespace Grades
         {
             //SpeechSynthesizer synth = new SpeechSynthesizer();
             //synth.Speak("Hello! This is the grade book program. Czy to polski syntezator?");
-
-
-         
-
-            
+                
+                        
             GradeBook book = new GradeBook();
+            book.Name = "Scott's Grade Book";
+            book.Name = null; //zabaepieczone przed tym w property w GradeBook
             book.AddGrade(91);
             book.AddGrade(89.5f);
             book.AddGrade(75);
@@ -28,23 +27,31 @@ namespace Grades
             book.AddGrade(95);
 
             GradeStatististics stats = book.ComputeStatistics();
-            Console.WriteLine(stats.AverageGrade);
-            Console.WriteLine(stats.HighestGrade);
-            Console.WriteLine(stats.LowestGrade);
-
+            Console.WriteLine(book.Name);
+            WriteResult("Average",stats.AverageGrade);
+            WriteResult("Highest", (int)stats.HighestGrade);
+            WriteResult("Lowest",stats.LowestGrade);
 
             //GradeBook book2 = book; //= new GradeBook();
             //book2.AddGrade(75);
 
             //book2.grades
 
-
-
-
             //ctro cw tabx2
 
             //test for github
-            //test for github branch chapter6
+            //test for github branch chapter6 gtthd
+        }
+
+        static void WriteResult(string description, int  result)
+        { //overload methods
+            Console.WriteLine(description + ": " + result);
+        }
+
+        static void WriteResult(string description, float result)
+        {
+            //Console.WriteLine(description + ": " + result);
+            Console.WriteLine("{0}: {1}", description, result);
         }
     }
 
