@@ -1,4 +1,4 @@
 # GradesBook
 
 Pluralsight C# Fundamentals Tutorial.
-After 5th chapter.
+After 6th chapter.
