@@ -1,4 +1,4 @@
 # GradesBook
 
-Pluralsight C# Fundamentals Tutorial
-After 5th chapter.
+Pluralsight C# Fundamentals Tutorial.
+After 6th chapter.
