@@ -18,8 +18,9 @@ namespace Grades
 
         }
 
-        public GradeStatististics ComputeStatistics()
+        public virtual GradeStatististics ComputeStatistics()
         {
+            Console.WriteLine("Gradebook::ComputeStatistics");
             GradeStatististics stats = new GradeStatististics();
 
             //stats.HighestGrade = 0;
@@ -47,9 +48,12 @@ namespace Grades
 
         public void WriteGrades(TextWriter destination)
         {
+            
             for (int i = 0; i < grades.Count; i++)
             {
+                
                 destination.WriteLine(grades[i]);
+            
             }
         }
 
@@ -96,8 +100,8 @@ namespace Grades
 
         private string _name;
 
-        private List<float> grades;
-
+        //private List<float> grades;
+        protected List<float> grades;
 
 
     }
