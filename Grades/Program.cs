@@ -16,6 +16,10 @@ namespace Grades
                 
                         
             GradeBook book = new GradeBook();
+
+            book.NameChanged += new NameChangedDelegate(OnNameChanged);
+            book.NameChanged += new NameChangedDelegate(OnNameChanged2);
+
             book.Name = "Scott's Grade Book";
             book.Name = null; //zabaepieczone przed tym w property w GradeBook
             book.AddGrade(91);
@@ -39,9 +43,20 @@ namespace Grades
 
             //ctro cw tabx2
 
-            //test for github
-            //test for github branch chapter6 gtthd
         }
+
+        static void OnNameChanged(string existingName, string newName) //subscriber of an event
+        {
+            Console.WriteLine($"Grade book changing name from {existingName} to {newName}");
+
+        }
+
+        static void OnNameChanged2(string existingName, string newName) //subscriber of an event
+        {
+            Console.WriteLine("***");
+
+        }
+
 
         static void WriteResult(string description, int  result)
         { //overload methods
