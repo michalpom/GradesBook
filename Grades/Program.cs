@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Speech.Synthesis;
 using System.Text;
@@ -22,39 +23,21 @@ namespace Grades
             //book.NameChanged += OnNameChanged;
 
             //book.Name = "dddd";
-            
 
-            try
-            {
-                Console.WriteLine("Enter a name"); book.Name = Console.ReadLine();
-            }
-           
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+
+            GetBookName(book);
+
 
 
 
 
             //book.Name = "Scott's Grade Book";
             //book.Name = null; //zabaepieczone przed tym w property w GradeBook
-            book.AddGrade(91);
-            book.AddGrade(89.5f);
-            book.AddGrade(75);
-            book.AddGrade(60);
-            book.AddGrade(59);
-            book.AddGrade(82);
-            book.AddGrade(95);
-            book.WriteGrades(Console.Out);
+            AddGrades(book);
 
-            GradeStatististics stats = book.ComputeStatistics();
-            Console.WriteLine(book.Name);
-            WriteResult("Average", stats.AverageGrade);
-            WriteResult("Highest", stats.HighestGrade);
-            WriteResult("Lowest", stats.LowestGrade);
-            WriteResult("Grade", stats.LetterGrade);
-            WriteResult("My opinion", stats.Description);
+            SaveGrades(book);
+
+            WriteResults(book);
 
             //GradeBook book2 = book; //= new GradeBook();
             //book2.AddGrade(75);
@@ -63,6 +46,51 @@ namespace Grades
 
             //ctro cw tabx2
 
+        }
+
+        private static void WriteResults(GradeBook book)
+        {
+            GradeStatististics stats = book.ComputeStatistics();
+            Console.WriteLine(book.Name);
+            WriteResult("Average", stats.AverageGrade);
+            WriteResult("Highest", stats.HighestGrade);
+            WriteResult("Lowest", stats.LowestGrade);
+            WriteResult("Grade", stats.LetterGrade);
+            WriteResult("My opinion", stats.Description);
+        }
+
+        private static void SaveGrades(GradeBook book)
+        {
+            using (StreamWriter outputFile = File.CreateText("grades.txt"))
+            {
+
+                book.WriteGrades(outputFile);
+                ///outputFile.Close();
+            }
+        }
+
+        private static void AddGrades(GradeBook book)
+        {
+            book.AddGrade(91);
+            book.AddGrade(89.5f);
+            book.AddGrade(75);
+            book.AddGrade(60);
+            book.AddGrade(59);
+            book.AddGrade(82);
+            book.AddGrade(95);
+        }
+
+        private static void GetBookName(GradeBook book)
+        {
+            try
+            {
+                Console.WriteLine("Enter a name"); book.Name = Console.ReadLine();
+            }
+
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
 
         //static void OnNameChanged(string existingName, string newName) //subscriber of an event
