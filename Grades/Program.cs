@@ -39,6 +39,7 @@ namespace Grades
             WriteResult("Highest", stats.HighestGrade);
             WriteResult("Lowest",stats.LowestGrade);
             WriteResult("Grade", stats.LetterGrade);
+            WriteResult("My opinion", stats.Description);
 
             //GradeBook book2 = book; //= new GradeBook();
             //book2.AddGrade(75);
