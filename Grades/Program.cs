@@ -17,8 +17,11 @@ namespace Grades
                         
             GradeBook book = new GradeBook();
 
-            book.NameChanged += new NameChangedDelegate(OnNameChanged);
-            book.NameChanged += new NameChangedDelegate(OnNameChanged2);
+            //book.NameChanged += new NameChangedDelegate(OnNameChanged);
+            //book.NameChanged += new NameChangedDelegate(OnNameChanged2);
+            book.NameChanged += OnNameChanged;
+            
+
 
             book.Name = "Scott's Grade Book";
             book.Name = null; //zabaepieczone przed tym w property w GradeBook
@@ -45,17 +48,17 @@ namespace Grades
 
         }
 
-        static void OnNameChanged(string existingName, string newName) //subscriber of an event
+        //static void OnNameChanged(string existingName, string newName) //subscriber of an event
+        //{
+        //    Console.WriteLine($"Grade book changing name from {existingName} to {newName}");
+
+        //}
+        static void OnNameChanged(object sender, NameChangedEventArgs args)
         {
-            Console.WriteLine($"Grade book changing name from {existingName} to {newName}");
+            Console.WriteLine($"Grade book changing name from {args.ExistingName} to {args.NewName}");
 
         }
 
-        static void OnNameChanged2(string existingName, string newName) //subscriber of an event
-        {
-            Console.WriteLine("***");
-
-        }
 
 
         static void WriteResult(string description, int  result)
