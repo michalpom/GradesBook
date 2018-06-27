@@ -13,15 +13,29 @@ namespace Grades
         {
             //SpeechSynthesizer synth = new SpeechSynthesizer();
             //synth.Speak("Hello! This is the grade book program. Czy to polski syntezator?");
-                
-                        
+
+
             GradeBook book = new GradeBook();
 
             //book.NameChanged += new NameChangedDelegate(OnNameChanged);
             //book.NameChanged += new NameChangedDelegate(OnNameChanged2);
             //book.NameChanged += OnNameChanged;
 
-            book.Name = null;
+            //book.Name = "dddd";
+            
+
+            try
+            {
+                Console.WriteLine("Enter a name"); book.Name = Console.ReadLine();
+            }
+           
+            catch (ArgumentException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+
+
 
             //book.Name = "Scott's Grade Book";
             //book.Name = null; //zabaepieczone przed tym w property w GradeBook
@@ -36,9 +50,9 @@ namespace Grades
 
             GradeStatististics stats = book.ComputeStatistics();
             Console.WriteLine(book.Name);
-            WriteResult("Average",stats.AverageGrade);
+            WriteResult("Average", stats.AverageGrade);
             WriteResult("Highest", stats.HighestGrade);
-            WriteResult("Lowest",stats.LowestGrade);
+            WriteResult("Lowest", stats.LowestGrade);
             WriteResult("Grade", stats.LetterGrade);
             WriteResult("My opinion", stats.Description);
 
@@ -70,7 +84,7 @@ namespace Grades
         //}
         static void WriteResult(string description, string result)
         {
-            
+
             Console.WriteLine($"{description}: {result}", description, result);
         }
         static void WriteResult(string description, float result)
