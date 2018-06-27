@@ -20,8 +20,8 @@ namespace Grades
             //book.NameChanged += new NameChangedDelegate(OnNameChanged);
             //book.NameChanged += new NameChangedDelegate(OnNameChanged2);
             //book.NameChanged += OnNameChanged;
-            
 
+            book.Name = null;
 
             //book.Name = "Scott's Grade Book";
             //book.Name = null; //zabaepieczone przed tym w property w GradeBook
