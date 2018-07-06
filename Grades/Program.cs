@@ -15,7 +15,7 @@ namespace Grades
             //SpeechSynthesizer synth = new SpeechSynthesizer();
             //synth.Speak("Hello! This is the grade book program. Czy to polski syntezator?");
 
-            GradeBook book = CreateGradeBook();
+            GradeTracker book = CreateGradeBook();
 
             //book.NameChanged += new NameChangedDelegate(OnNameChanged);
             //book.NameChanged += new NameChangedDelegate(OnNameChanged2);
@@ -44,12 +44,12 @@ namespace Grades
 
 
 
-        private static GradeBook CreateGradeBook()
+        private static GradeTracker CreateGradeBook()
         {
             return new ThrowAwayGradebook();
         }
 
-        private static void WriteResults(GradeBook book)
+        private static void WriteResults(GradeTracker book)
         {
             GradeStatististics stats = book.ComputeStatistics();
             Console.WriteLine(book.Name);
@@ -60,7 +60,7 @@ namespace Grades
             WriteResult("My opinion", stats.Description);
         }
 
-        private static void SaveGrades(GradeBook book)
+        private static void SaveGrades(GradeTracker book)
         {
             using (StreamWriter outputFile = File.CreateText("grades.txt"))
             {
@@ -71,7 +71,7 @@ namespace Grades
             }
         }
 
-        private static void AddGrades(GradeBook book)
+        private static void AddGrades(GradeTracker book)
         {
             book.AddGrade(91);
             book.AddGrade(89.5f);
@@ -82,7 +82,7 @@ namespace Grades
             book.AddGrade(95);
         }
 
-        private static void GetBookName(GradeBook book)
+        private static void GetBookName(GradeTracker book)
         {
             try
             {

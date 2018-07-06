@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Grades
 {
-    public class GradeBook    //internal domyslnie jak nic nie ma, dostepne tylko w jednym assembly
+    public class GradeBook : GradeTracker   //internal domyslnie jak nic nie ma, dostepne tylko w jednym assembly
     {
         //constructor ctor
 
@@ -18,7 +18,7 @@ namespace Grades
 
         }
 
-        public virtual GradeStatististics ComputeStatistics()
+        public override GradeStatististics ComputeStatistics()
         {
             Console.WriteLine("Gradebook::ComputeStatistics");
             GradeStatististics stats = new GradeStatististics();
@@ -46,7 +46,7 @@ namespace Grades
 
         }
 
-        public void WriteGrades(TextWriter destination)
+        public override void WriteGrades(TextWriter destination)
         {
             
             for (int i = 0; i < grades.Count; i++)
@@ -57,7 +57,7 @@ namespace Grades
             }
         }
 
-        public void AddGrade(float grade)  //method
+        public override void AddGrade(float grade)  //method
         {
             grades.Add(grade);  //.Clear .Sort
 
@@ -67,38 +67,7 @@ namespace Grades
         //public string Name; //field
 
         //property:
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                if (string.IsNullOrEmpty(value))
-                {
-                    throw new ArgumentException("Name cannot be null or empty");
-                }
 
-                if (_name != value && NameChanged != null)
-                {
-                    NameChangedEventArgs args = new NameChangedEventArgs();
-                    args.ExistingName = _name;
-                    args.NewName = value;
-
-
-                    NameChanged(this, args);
-                }
-
-                _name = value;
-
-            }
-
-        }
-        //public NameChangedDelegate NameChanged;
-        public event NameChangedDelegate NameChanged;
-
-        private string _name;
 
         //private List<float> grades;
         protected List<float> grades;
