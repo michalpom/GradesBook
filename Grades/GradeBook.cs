@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -68,7 +69,10 @@ namespace Grades
 
         //property:
 
-
+        public override IEnumerator GetEnumerator()
+        {
+            return grades.GetEnumerator();
+        }
         //private List<float> grades;
         protected List<float> grades;
 
