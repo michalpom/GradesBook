@@ -15,8 +15,8 @@ namespace Grades
             //SpeechSynthesizer synth = new SpeechSynthesizer();
             //synth.Speak("Hello! This is the grade book program. Czy to polski syntezator?");
 
-
-            GradeBook book = new GradeBook();
+            //GradeTracker book = CreateGradeBook();    //commented to check Interfaces
+            IGradeTracker book = CreateGradeBook();
 
             //book.NameChanged += new NameChangedDelegate(OnNameChanged);
             //book.NameChanged += new NameChangedDelegate(OnNameChanged2);
@@ -24,12 +24,7 @@ namespace Grades
 
             //book.Name = "dddd";
 
-
             GetBookName(book);
-
-
-
-
 
             //book.Name = "Scott's Grade Book";
             //book.Name = null; //zabaepieczone przed tym w property w GradeBook
@@ -48,9 +43,22 @@ namespace Grades
 
         }
 
-        private static void WriteResults(GradeBook book)
+
+
+        private static IGradeTracker CreateGradeBook()
+        {
+            return new ThrowAwayGradebook();
+        }
+
+        private static void WriteResults(IGradeTracker book)
         {
             GradeStatististics stats = book.ComputeStatistics();
+
+            foreach (float grade in book)
+            {
+                Console.WriteLine(grade);
+            }
+
             Console.WriteLine(book.Name);
             WriteResult("Average", stats.AverageGrade);
             WriteResult("Highest", stats.HighestGrade);
@@ -59,17 +67,18 @@ namespace Grades
             WriteResult("My opinion", stats.Description);
         }
 
-        private static void SaveGrades(GradeBook book)
+        private static void SaveGrades(IGradeTracker book)
         {
             using (StreamWriter outputFile = File.CreateText("grades.txt"))
             {
-
+                
                 book.WriteGrades(outputFile);
+                
                 ///outputFile.Close();
             }
         }
 
-        private static void AddGrades(GradeBook book)
+        private static void AddGrades(IGradeTracker book)
         {
             book.AddGrade(91);
             book.AddGrade(89.5f);
@@ -80,7 +89,7 @@ namespace Grades
             book.AddGrade(95);
         }
 
-        private static void GetBookName(GradeBook book)
+        private static void GetBookName(IGradeTracker book)
         {
             try
             {
